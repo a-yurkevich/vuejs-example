@@ -27,7 +27,11 @@
       dark
     >
       <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
-      <v-toolbar-title>Ad Board</v-toolbar-title>
+      <v-toolbar-title>
+        <router-link to="/" tag="span" class="pointer">
+          Ad Board
+        </router-link>
+      </v-toolbar-title>
       <v-spacer></v-spacer>
 
       <v-btn
@@ -72,3 +76,9 @@
     }),
   }
 </script>
+
+<style scoped>
+  .pointer {
+    cursor: pointer;
+  }
+</style>
