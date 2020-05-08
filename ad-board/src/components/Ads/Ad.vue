@@ -5,13 +5,13 @@
         <h1 class="text--secondary mb-3">Ad</h1>
         <v-card>
           <v-img
-            src="https://cdn.vuetifyjs.com/images/carousel/bird.jpg"
+            :src="ad.imageSrc"
             height="300px"
           >
           </v-img>
           <v-card-text class="text--primary">
-            <h3>Lorem</h3>
-            <p>Lorem ipsum</p>
+            <h3>{{ad.title}}</h3>
+            <p>{{ad.description}}</p>
           </v-card-text>
           <v-card-actions>
             <v-spacer></v-spacer>
@@ -29,9 +29,11 @@
 
 <script>
   export default {
-    data () {
-      return {
-
+    props: ['id'],
+    computed: {
+      ad () {
+        const id = this.id
+        return this.$store.getters.adById(id)
       }
     }
   }
