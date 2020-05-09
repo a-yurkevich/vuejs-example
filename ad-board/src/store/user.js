@@ -24,10 +24,10 @@ export default {
         const user = await fb.auth().createUserWithEmailAndPassword(email, password)
         commit('setUser', new User(user.uid))
         commit('setLoading', false)
-      } catch (e) {
+      } catch (error) {
         commit('setLoading', false)
-        commit('clearError', error.message)
-        throw e
+        commit('setError', error.message)
+        throw error
       }
     },
     async loginUser ({commit}, {email, password}) {
@@ -38,10 +38,10 @@ export default {
         const user = await fb.auth().signInWithEmailAndPassword(email, password)
         commit('setUser', new User(user.uid))
         commit('setLoading', false)
-      } catch (e) {
+      } catch (error) {
         commit('setLoading', false)
-        commit('clearError', error.message)
-        throw e
+        commit('setError', error.message)
+        throw error
       }
     }
   },

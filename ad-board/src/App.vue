@@ -49,6 +49,26 @@
     <v-content>
       <router-view></router-view>
     </v-content>
+
+    <template v-if="error">
+      <v-snackbar
+        color="error"
+        :multi-line="true"
+        :timeout="7000"
+        @input="closeError"
+        :value="true"
+      >
+        {{error}}
+        <v-btn
+          dark
+          text
+          @click="closeError"
+        >
+          Close
+        </v-btn>
+      </v-snackbar>
+    </template>
+
     <v-footer
       color="indigo"
       app
@@ -74,6 +94,16 @@
         {title: 'My ads', icon: 'mdi-clipboard-list-outline', url: '/list'}
       ]
     }),
+    computed: {
+      error () {
+        return this.$store.getters.error
+      }
+    },
+    methods: {
+      closeError () {
+        this.$store.dispatch('clearError')
+      }
+    }
   }
 </script>
 
