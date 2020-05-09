@@ -48,7 +48,7 @@
 
             <v-card-actions>
               <v-spacer></v-spacer>
-              <v-btn flat :to="'/ad/' + ad.id">Open</v-btn>
+              <v-btn :to="'/ad/' + ad.id">Open</v-btn>
               <v-btn color="indigo" dark>Buy</v-btn>
             </v-card-actions>
           </v-card>
