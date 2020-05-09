@@ -18,6 +18,17 @@
             <v-list-item-title v-text="link.title">Home</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
+        <v-list-item
+          v-if="isUserLoggedIn"
+          @click="onLogout"
+        >
+          <v-list-item-action>
+            <v-icon>mdi-exit-to-app</v-icon>
+          </v-list-item-action>
+          <v-list-item-content>
+            <v-list-item-title>Logout</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
       </v-list>
     </v-navigation-drawer>
 
@@ -43,6 +54,14 @@
         outlined
         color="white">
         {{link.title}}
+      </v-btn>
+      <v-btn
+        @click="onLogout"
+        class="ma-2 hidden-sm-and-down"
+        outlined
+        v-if="isUserLoggedIn"
+        color="white">
+        Logout
       </v-btn>
     </v-app-bar>
 
@@ -84,24 +103,39 @@
       source: String,
     },
     data: () => ({
-      drawer: null,
-      links: [
-        {title: 'Home', icon: 'mdi-home', url: '/'},
-        {title: 'Login', icon: 'mdi-lock', url: '/login'},
-        {title: 'Registration', icon: 'mdi-face', url: '/registration'},
-        {title: 'Orders', icon: 'mdi-bookmark', url: '/orders'},
-        {title: 'New ad', icon: 'mdi-plus-circle-outline', url: '/new'},
-        {title: 'My ads', icon: 'mdi-clipboard-list-outline', url: '/list'}
-      ]
+      drawer: null
     }),
     computed: {
       error () {
         return this.$store.getters.error
+      },
+      isUserLoggedIn () {
+        return this.$store.getters.isUserLoggedIn
+      },
+      links () {
+        if (this.isUserLoggedIn) {
+          return [
+            {title: 'Home', icon: 'mdi-home', url: '/'},
+            {title: 'Orders', icon: 'mdi-bookmark', url: '/orders'},
+            {title: 'New ad', icon: 'mdi-plus-circle-outline', url: '/new'},
+            {title: 'My ads', icon: 'mdi-clipboard-list-outline', url: '/list'}
+          ]
+        }
+
+        return [
+          {title: 'Home', icon: 'mdi-home', url: '/'},
+          {title: 'Login', icon: 'mdi-lock', url: '/login'},
+          {title: 'Registration', icon: 'mdi-face', url: '/registration'},
+        ]
       }
     },
     methods: {
       closeError () {
         this.$store.dispatch('clearError')
+      },
+      onLogout () {
+        this.$store.dispatch('userLogout')
+        this.$router.push('/')
       }
     }
   }
