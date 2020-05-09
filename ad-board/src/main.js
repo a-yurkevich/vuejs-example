@@ -4,6 +4,8 @@ import router from './router'
 import store from './store'
 import * as fb from 'firebase'
 import vuetify from '../plugins/vuetify'
+import BuyModalComponent from './components/Shared/BuyModal'
+Vue.component('app-buy-modal', BuyModalComponent)
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */
