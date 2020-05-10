@@ -91,8 +91,6 @@ export default {
             )
           )
         })
-        console.log('=========== ADS ==========')
-        console.log(resultAds)
         commit('loadAds', resultAds)
         commit('setLoading', false)
       } catch (error) {

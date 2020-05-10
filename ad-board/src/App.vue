@@ -2,6 +2,7 @@
   <v-app id="inspire">
     <v-navigation-drawer
       v-model="drawer"
+      class="hidden-md-and-up"
       app
     >
       <v-list dense>
@@ -37,7 +38,7 @@
       color="indigo"
       dark
     >
-      <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
+      <v-app-bar-nav-icon @click.stop="drawer = !drawer" class="hidden-md-and-up"/>
       <v-toolbar-title>
         <router-link to="/" tag="span" class="pointer">
           Ad Board
@@ -144,5 +145,13 @@
 <style scoped>
   .pointer {
     cursor: pointer;
+  }
+  @media (min-width: 1240px) {
+    header {
+      left: 0 !important;
+    }
+    main {
+      padding-left: 0 !important;
+    }
   }
 </style>

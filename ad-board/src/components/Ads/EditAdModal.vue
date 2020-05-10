@@ -3,8 +3,6 @@
     <v-spacer></v-spacer>
     <v-btn
       class="mr-5"
-      color="primary"
-      dark
       @click.stop="modal = true"
     >
       Edit
@@ -12,7 +10,7 @@
 
     <v-dialog
       v-model="modal"
-      max-width="290"
+      max-width="320"
     >
       <v-card>
         <v-card-title class="headline">Edit Ad</v-card-title>
@@ -38,16 +36,13 @@
           <v-spacer></v-spacer>
 
           <v-btn
-            color="green darken-1"
-            text
             @click="onCancel"
           >
             Cancel
           </v-btn>
 
           <v-btn
-            color="green darken-1"
-            text
+            class="primary"
             @click="onSave"
           >
             Save
@@ -61,8 +56,6 @@
   export default {
     props: ['ad'],
     data () {
-      console.log('-----------')
-      console.log(this)
       return {
         modal: false,
         editedTitle: this.ad.title,

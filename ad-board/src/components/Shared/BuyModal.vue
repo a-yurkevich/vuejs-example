@@ -1,8 +1,7 @@
 <template>
-  <v-row>
+  <div>
     <v-spacer></v-spacer>
     <v-btn
-      class="mr-5"
       color="primary"
       dark
       @click.stop="modal = true"
@@ -12,7 +11,7 @@
 
     <v-dialog
       v-model="modal"
-      max-width="290"
+      max-width="320"
     >
       <v-card>
         <v-card-title class="headline">Do you want to buy it?</v-card-title>
@@ -38,8 +37,6 @@
           <v-spacer></v-spacer>
 
           <v-btn
-            color="green darken-1"
-            text
             @click="onCancel"
             :disabled="localLoading"
           >
@@ -47,8 +44,7 @@
           </v-btn>
 
           <v-btn
-            color="green darken-1"
-            text
+            color="primary"
             @click="onSave"
             :disabled="localLoading"
             :loading="localLoading"
@@ -58,7 +54,7 @@
         </v-card-actions>
       </v-card>
     </v-dialog>
-  </v-row>
+  </div>
 </template>
 <script>
   export default {

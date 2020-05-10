@@ -55,8 +55,6 @@
   export default {
     computed: {
       myAds () {
-        console.log(100500)
-        console.log(this.$store.getters.myAds)
         return this.$store.getters.myAds
       },
       loading () {
