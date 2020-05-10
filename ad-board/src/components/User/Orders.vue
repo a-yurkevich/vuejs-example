@@ -1,7 +1,14 @@
 <template>
   <v-container>
     <v-layout row>
-      <v-flex xs12 md6>
+      <v-flex xs12 class="text-center pt-5" v-if="loading">
+        <v-progress-circular
+          :size="70"
+          color="amber"
+          indeterminate
+        ></v-progress-circular>
+      </v-flex>
+      <v-flex xs12 md6 v-else-if="!loading && orders.length !== 0">
         <h1 class="text--secondary">Orders</h1>
         <v-list
           subheader
@@ -18,8 +25,8 @@
                 <v-list-item-action>
                   <v-checkbox
                     :input-value="order.done"
-                    v-model="active"
                     color="primary"
+                    :disabled="order.done"
                     @change="markDone(order)"
                   ></v-checkbox>
                 </v-list-item-action>
@@ -32,7 +39,7 @@
                   <v-btn
                     class="indigo"
                     dark
-                    :to="'/ad/' + order.id"
+                    :to="'/ad/' + order.adId"
                   >Open</v-btn>
                 </v-list-item-action>
               </template>
@@ -40,29 +47,34 @@
           </v-list-item-group>
         </v-list>
       </v-flex>
+      <v-flex xs12 class="text-center" v-else>
+        <h3>You have no orders</h3>
+      </v-flex>
     </v-layout>
   </v-container>
 </template>
 
 <script>
   export default {
-    data () {
-      return {
-        orders: [
-          {
-            id: '1',
-            name: 'Artur',
-            phone: '+37529-793-2718',
-            adId: '1',
-            done: false
-          }
-        ]
+    computed: {
+      loading () {
+        return this.$store.getters.loading
+      },
+      orders () {
+        return this.$store.getters.orders
       }
     },
     methods: {
       markDone (order) {
-        order.done = true
+        this.$store.dispatch('markOrderDone', order.id)
+          .then(() => {
+            order.done = true
+          })
+          .catch(() => {})
       }
+    },
+    created() {
+      this.$store.dispatch('fetchOrders')
     }
   }
 </script>
