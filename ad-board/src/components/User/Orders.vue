@@ -47,8 +47,8 @@
           </v-list-item-group>
         </v-list>
       </v-flex>
-      <v-flex xs12 class="text-center" v-else>
-        <h3>You have no orders</h3>
+      <v-flex xs12 v-else>
+        <h1 class="text--secondary mb-3">You have no orders</h1>
       </v-flex>
     </v-layout>
   </v-container>
