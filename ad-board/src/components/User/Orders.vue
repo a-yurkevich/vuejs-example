@@ -9,7 +9,7 @@
         ></v-progress-circular>
       </v-flex>
       <v-flex xs12 md6 v-else-if="!loading && orders.length !== 0">
-        <h1 class="text--secondary">Orders</h1>
+        <h1 class="text--secondary">Requests</h1>
         <v-list
           subheader
           two-line

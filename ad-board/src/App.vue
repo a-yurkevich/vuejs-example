@@ -117,7 +117,7 @@ export default {
       if (this.isUserLoggedIn) {
         return [
           {title: 'Home', icon: 'mdi-home', url: '/'},
-          {title: 'Orders', icon: 'mdi-bookmark', url: '/orders'},
+          {title: 'Requests', icon: 'mdi-bookmark', url: '/orders'},
           {title: 'New ad', icon: 'mdi-plus-circle-outline', url: '/new'},
           {title: 'My ads', icon: 'mdi-clipboard-list-outline', url: '/list'}
         ]

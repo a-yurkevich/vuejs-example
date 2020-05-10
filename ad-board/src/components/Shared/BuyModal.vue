@@ -6,7 +6,7 @@
       dark
       @click.stop="modal = true"
     >
-      Buy
+      I am interested
     </v-btn>
 
     <v-dialog
@@ -49,7 +49,7 @@
             :disabled="localLoading"
             :loading="localLoading"
           >
-            Buy
+            Send
           </v-btn>
         </v-card-actions>
       </v-card>
