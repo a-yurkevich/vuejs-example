@@ -62,7 +62,6 @@ export default {
           id: ad.key,
           imageSrc
         })
-
       } catch (error) {
         commit('setError', error.message)
         commit('setLoading', false)
@@ -130,7 +129,7 @@ export default {
     myAds (state, getters) {
       return state.ads.filter(ad => {
         return ad.ownerId === getters.user.id
-      }) ;
+      })
     },
     adById (state) {
       return adId => {

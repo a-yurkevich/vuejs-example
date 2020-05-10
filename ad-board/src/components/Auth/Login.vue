@@ -60,46 +60,46 @@
 </template>
 
 <script>
-  export default {
-    data () {
-      return {
-        email: '',
-        password: '',
-        valid: false,
-        emailRules: [
-          v => !!v || 'E-mail is required',
-          v => /.+@.+\..+/.test(v) || 'E-mail must be valid',
-        ],
-        passwordRules: [
-          v => !!v || 'Password is required',
-          v => (v && v.length >= 6) || 'Password must be more than 6 characters',
-        ],
-      }
-    },
-    computed: {
-      loading () {
-        return this.$store.getters.loading
-      }
-    },
-    methods: {
-      onSubmit () {
-        if (this.$refs.form.validate()) {
-          const user = {
-            email: this.email,
-            password: this.password
-          }
-          this.$store.dispatch('loginUser', user)
-            .then(() => {
-              this.$router.push('/')
-            })
-            .catch(() => {})
+export default {
+  data () {
+    return {
+      email: '',
+      password: '',
+      valid: false,
+      emailRules: [
+        v => !!v || 'E-mail is required',
+        v => /.+@.+\..+/.test(v) || 'E-mail must be valid'
+      ],
+      passwordRules: [
+        v => !!v || 'Password is required',
+        v => (v && v.length >= 6) || 'Password must be more than 6 characters'
+      ]
+    }
+  },
+  computed: {
+    loading () {
+      return this.$store.getters.loading
+    }
+  },
+  methods: {
+    onSubmit () {
+      if (this.$refs.form.validate()) {
+        const user = {
+          email: this.email,
+          password: this.password
         }
-      }
-    },
-    created () {
-      if (this.$route.query['loginError']) {
-        this.$store.dispatch('setError', 'Please login to access')
+        this.$store.dispatch('loginUser', user)
+          .then(() => {
+            this.$router.push('/')
+          })
+          .catch(() => {})
       }
     }
+  },
+  created () {
+    if (this.$route.query['loginError']) {
+      this.$store.dispatch('setError', 'Please login to access')
+    }
   }
+}
 </script>

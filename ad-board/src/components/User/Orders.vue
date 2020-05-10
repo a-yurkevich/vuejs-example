@@ -55,26 +55,26 @@
 </template>
 
 <script>
-  export default {
-    computed: {
-      loading () {
-        return this.$store.getters.loading
-      },
-      orders () {
-        return this.$store.getters.orders
-      }
+export default {
+  computed: {
+    loading () {
+      return this.$store.getters.loading
     },
-    methods: {
-      markDone (order) {
-        this.$store.dispatch('markOrderDone', order.id)
-          .then(() => {
-            order.done = true
-          })
-          .catch(() => {})
-      }
-    },
-    created() {
-      this.$store.dispatch('fetchOrders')
+    orders () {
+      return this.$store.getters.orders
     }
+  },
+  methods: {
+    markDone (order) {
+      this.$store.dispatch('markOrderDone', order.id)
+        .then(() => {
+          order.done = true
+        })
+        .catch(() => {})
+    }
+  },
+  created () {
+    this.$store.dispatch('fetchOrders')
   }
+}
 </script>

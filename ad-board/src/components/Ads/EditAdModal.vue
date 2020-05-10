@@ -53,31 +53,31 @@
   </v-row>
 </template>
 <script>
-  export default {
-    props: ['ad'],
-    data () {
-      return {
-        modal: false,
-        editedTitle: this.ad.title,
-        editedDescription: this.ad.description
-      }
+export default {
+  props: ['ad'],
+  data () {
+    return {
+      modal: false,
+      editedTitle: this.ad.title,
+      editedDescription: this.ad.description
+    }
+  },
+  methods: {
+    onCancel () {
+      this.modal = false
+      this.editedTitle = this.ad.title
+      this.editedDescription = this.ad.description
     },
-    methods: {
-      onCancel () {
-        this.modal = false;
-        this.editedTitle = this.ad.title
-        this.editedDescription = this.ad.description
-      },
-      onSave () {
-        if (this.title !== '' && this.editedDescription !== '') {
-          this.$store.dispatch('updateAd', {
-            title: this.editedTitle,
-            description: this.editedDescription,
-            id: this.ad.id
-          })
-          this.modal = false;
-        }
+    onSave () {
+      if (this.title !== '' && this.editedDescription !== '') {
+        this.$store.dispatch('updateAd', {
+          title: this.editedTitle,
+          description: this.editedDescription,
+          id: this.ad.id
+        })
+        this.modal = false
       }
     }
   }
+}
 </script>

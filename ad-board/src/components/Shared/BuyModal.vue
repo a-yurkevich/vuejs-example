@@ -57,39 +57,39 @@
   </div>
 </template>
 <script>
-  export default {
-    props: ['ad'],
-    data () {
-      return {
-        modal: false,
-        name: '',
-        phone: '',
-        localLoading: false
-      }
+export default {
+  props: ['ad'],
+  data () {
+    return {
+      modal: false,
+      name: '',
+      phone: '',
+      localLoading: false
+    }
+  },
+  methods: {
+    onCancel () {
+      this.modal = false
+      this.name = ''
+      this.phone = ''
     },
-    methods: {
-      onCancel () {
-        this.modal = false;
-        this.name = ''
-        this.phone = ''
-      },
-      onSave () {
-        if (this.name !== '' && this.phone !== '') {
-          this.localLoading = true
-          this.$store.dispatch('createOrder', {
-            name: this.name,
-            phone: this.phone,
-            adId: this.ad.id,
-            ownerId: this.ad.ownerId
-          })
+    onSave () {
+      if (this.name !== '' && this.phone !== '') {
+        this.localLoading = true
+        this.$store.dispatch('createOrder', {
+          name: this.name,
+          phone: this.phone,
+          adId: this.ad.id,
+          ownerId: this.ad.ownerId
+        })
           .finally(() => {
             this.name = ''
             this.phone = ''
             this.localLoading = false
             this.modal = false
           })
-        }
       }
     }
   }
+}
 </script>

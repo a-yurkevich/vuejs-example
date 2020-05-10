@@ -78,50 +78,50 @@
 </template>
 
 <script>
-  export default {
-    data () {
-      return {
-        title: '',
-        description: '',
-        promo: false,
-        valid: false,
-        image: null,
-        imageSrc: ''
+export default {
+  data () {
+    return {
+      title: '',
+      description: '',
+      promo: false,
+      valid: false,
+      image: null,
+      imageSrc: ''
+    }
+  },
+  computed: {
+    loading () {
+      return this.$store.getters.loading
+    }
+  },
+  methods: {
+    createAd () {
+      if (this.$refs.form.validate() && this.image) {
+        const ad = {
+          title: this.title,
+          description: this.description,
+          promo: this.promo,
+          image: this.image
+        }
+        this.$store.dispatch('createAd', ad)
+          .then(() => {
+            this.$router.push('/list')
+          })
+          .catch(() => {})
       }
     },
-    computed: {
-      loading () {
-        return this.$store.getters.loading
-      }
+    triggerUpload () {
+      this.$refs.fileInput.click()
     },
-    methods: {
-      createAd () {
-        if (this.$refs.form.validate() && this.image) {
-          const ad = {
-            title: this.title,
-            description: this.description,
-            promo: this.promo,
-            image: this.image
-          }
-          this.$store.dispatch('createAd', ad)
-            .then(() => {
-              this.$router.push('/list')
-            })
-            .catch(() => {})
-        }
-      },
-      triggerUpload () {
-        this.$refs.fileInput.click()
-      },
-      onFileChange (event) {
-        const file = event.target.files[0]
-        const reader = new FileReader()
-        reader.onload = e => {
-          this.imageSrc = reader.result
-        }
-        reader.readAsDataURL(file)
-        this.image = file
+    onFileChange (event) {
+      const file = event.target.files[0]
+      const reader = new FileReader()
+      reader.onload = e => {
+        this.imageSrc = reader.result
       }
+      reader.readAsDataURL(file)
+      this.image = file
     }
   }
+}
 </script>

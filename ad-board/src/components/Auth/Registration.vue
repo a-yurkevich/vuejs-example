@@ -71,46 +71,46 @@
 </template>
 
 <script>
-  export default {
-    data () {
-      return {
-        email: '',
-        password: '',
-        confirmPassword: '',
-        valid: false,
-        emailRules: [
-          v => !!v || 'E-mail is required',
-          v => /.+@.+\..+/.test(v) || 'E-mail must be valid'
-        ],
-        passwordRules: [
-          v => !!v || 'Password is required',
-          v => (v && v.length >= 6) || 'Password must be more than 6 characters'
-        ],
-        confirmPasswordRules: [
-          v => !!v || 'Password is required',
-          v => v === this.password || 'Password should match'
-        ]
-      }
-    },
-    computed: {
-      loading () {
-        return this.$store.getters.loading
-      }
-    },
-    methods: {
-      onSubmit () {
-        if (this.$refs.form.validate()) {
-          const user = {
-            email: this.email,
-            password: this.password
-          }
-          this.$store.dispatch('registerUser', user)
-            .then(() => {
-              this.$router.push('/')
-            })
-            .catch(() => {})
+export default {
+  data () {
+    return {
+      email: '',
+      password: '',
+      confirmPassword: '',
+      valid: false,
+      emailRules: [
+        v => !!v || 'E-mail is required',
+        v => /.+@.+\..+/.test(v) || 'E-mail must be valid'
+      ],
+      passwordRules: [
+        v => !!v || 'Password is required',
+        v => (v && v.length >= 6) || 'Password must be more than 6 characters'
+      ],
+      confirmPasswordRules: [
+        v => !!v || 'Password is required',
+        v => v === this.password || 'Password should match'
+      ]
+    }
+  },
+  computed: {
+    loading () {
+      return this.$store.getters.loading
+    }
+  },
+  methods: {
+    onSubmit () {
+      if (this.$refs.form.validate()) {
+        const user = {
+          email: this.email,
+          password: this.password
         }
+        this.$store.dispatch('registerUser', user)
+          .then(() => {
+            this.$router.push('/')
+          })
+          .catch(() => {})
       }
     }
   }
+}
 </script>

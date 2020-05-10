@@ -99,47 +99,47 @@
 </template>
 
 <script>
-  export default {
-    props: {
-      source: String,
+export default {
+  props: {
+    source: String
+  },
+  data: () => ({
+    drawer: null
+  }),
+  computed: {
+    error () {
+      return this.$store.getters.error
     },
-    data: () => ({
-      drawer: null
-    }),
-    computed: {
-      error () {
-        return this.$store.getters.error
-      },
-      isUserLoggedIn () {
-        return this.$store.getters.isUserLoggedIn
-      },
-      links () {
-        if (this.isUserLoggedIn) {
-          return [
-            {title: 'Home', icon: 'mdi-home', url: '/'},
-            {title: 'Orders', icon: 'mdi-bookmark', url: '/orders'},
-            {title: 'New ad', icon: 'mdi-plus-circle-outline', url: '/new'},
-            {title: 'My ads', icon: 'mdi-clipboard-list-outline', url: '/list'}
-          ]
-        }
-
+    isUserLoggedIn () {
+      return this.$store.getters.isUserLoggedIn
+    },
+    links () {
+      if (this.isUserLoggedIn) {
         return [
           {title: 'Home', icon: 'mdi-home', url: '/'},
-          {title: 'Login', icon: 'mdi-lock', url: '/login'},
-          {title: 'Registration', icon: 'mdi-face', url: '/registration'},
+          {title: 'Orders', icon: 'mdi-bookmark', url: '/orders'},
+          {title: 'New ad', icon: 'mdi-plus-circle-outline', url: '/new'},
+          {title: 'My ads', icon: 'mdi-clipboard-list-outline', url: '/list'}
         ]
       }
+
+      return [
+        {title: 'Home', icon: 'mdi-home', url: '/'},
+        {title: 'Login', icon: 'mdi-lock', url: '/login'},
+        {title: 'Registration', icon: 'mdi-face', url: '/registration'}
+      ]
+    }
+  },
+  methods: {
+    closeError () {
+      this.$store.dispatch('clearError')
     },
-    methods: {
-      closeError () {
-        this.$store.dispatch('clearError')
-      },
-      onLogout () {
-        this.$store.dispatch('userLogout')
-        this.$router.push('/')
-      }
+    onLogout () {
+      this.$store.dispatch('userLogout')
+      this.$router.push('/')
     }
   }
+}
 </script>
 
 <style scoped>

@@ -21,7 +21,7 @@ export default {
   },
   actions: {
     async createOrder ({commit}, {name, phone, adId, ownerId}) {
-      const order = new Order (name, phone, adId)
+      const order = new Order(name, phone, adId)
       commit('clearError')
 
       try {
